@@ -29,7 +29,12 @@ document.addEventListener('DOMContentLoaded', () => {
 // --- API ACTIONS ---
 async function fetchProducts() {
     try {
-        const response = await fetch('http://localhost:3000/products');
+        const API_URL =
+    window.location.hostname === "localhost"
+        ? "http://localhost:3000"
+        : "https://YOUR-RENDER-URL.onrender.com";
+
+const response = await fetch(`${API_URL}/products`);
         if (!response.ok) throw new Error('Network response failure.');
         allProducts = await response.json();
         filteredProducts = [...allProducts];

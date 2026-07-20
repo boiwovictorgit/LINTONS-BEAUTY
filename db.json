@@ -1,0 +1,54 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Fit Me Matte & Poreless Foundation",
+      "brand": "Maybelline",
+      "category": "Makeup",
+      "price": 1450,
+      "image": "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=400",
+      "rating": 4.8,
+      "description": "Ideal for normal to oily skin, this exclusive matte foundation formula features micro-powders to control shine and blur pores."
+    },
+    {
+      "id": 1,
+      "name": "Fit Me Matte & Poreless Foundation",
+      "brand": "Maybelline",
+      "category": "Makeup",
+      "price": 1450,
+      "image": "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=400",
+      "rating": 4.8,
+      "description": "Ideal for normal to oily skin, this exclusive matte foundation formula features micro-powders to control shine and blur pores."
+    },
+    {
+      "id": 2,
+      "name": "Hyaluronic Acid Hydrating Serum",
+      "brand": "The Ordinary",
+      "category": "Skincare",
+      "price": 1800,
+      "image": "https://img.magnific.com/free-photo/collection-cosmetic-beauty-products-white-backdrop_23-2147878830.jpg?semt=ais_hybrid&w=740&q=80",
+      "rating": 4.6,
+      "description": "A hydration-support formula with ultra-pure, vegan hyaluronic acid to intensely hydrate multiple layers of your skin."
+    },
+    {
+      "id": 3,
+      "name": "Argan Oil Repairing Shampoo",
+      "brand": "OGX",
+      "category": "Haircare",
+      "price": 1200,
+      "image": "https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?q=80&w=400",
+      "rating": 4.3,
+      "description": "Thick, creamy formula helps to penetrate, moisturize, revive and create softness and strength for your hair."
+    },
+    {
+      "id": 4,
+      "name": "Coco Mademoiselle Eau De Parfum",
+      "brand": "Chanel",
+      "category": "Fragrance",
+      "price": 18500,
+      "image": "https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=400",
+      "rating": 4.9,
+      "description": "The essence of a bold and free woman. An amber fragrance with a strong character and a deep, sensual freshness."
+    }
+  ]
+}

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lintons Beauty | Premium Cosmetics</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <div class="top-header">
+            <div class="logo">LINTONS <span>BEAUTY</span></div>
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Search for brands, products...">
+                <button><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+            <div class="header-actions">
+                <button class="login-btn"><i class="fa-regular fa-user"></i> Login</button>
+                <div class="cart-icon">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span id="cart-count">0</span>
+                </div>
+            </div>
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#" class="nav-category active" data-category="all">Home</a></li>
+                <li><a href="#" class="nav-category" data-category="Makeup">Makeup</a></li>
+                <li><a href="#" class="nav-category" data-category="Skincare">Skincare</a></li>
+                <li><a href="#" class="nav-category" data-category="Haircare">Haircare</a></li>
+                <li><a href="#" class="nav-category" data-category="Fragrance">Fragrance</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Glow Up Safely</h1>
+            <p>Discover authentic global beauty brands curated specifically for your skin tone and type.</p>
+            <button class="shop-now-btn">Shop Now</button>
+        </div>
+    </section>
+
+    <section class="shop-by-category">
+        <h2 class="section-title">Shop By Category</h2>
+        <div class="category-circle-grid">
+            
+            <div class="category-circle-card" data-category="Makeup">
+                <div class="circle-image">
+                    <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=300" alt="Makeup">
+                </div>
+                <h3>Makeup</h3>
+            </div>
+
+            <div class="category-circle-card" data-category="Skincare">
+                <div class="circle-image">
+                    <img src="https://images.unsplash.com/photo-1583209814683-c023dd293cc6?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8Y29zbWV0aWNzfGVufDB8fDB8fHww" alt="Skincare">
+                </div>
+                <h3>Skincare</h3>
+            </div>
+
+            <div class="category-circle-card" data-category="Haircare">
+                <div class="circle-image">
+                    <img src="https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?q=80&w=300" alt="Haircare">
+                </div>
+                <h3>Haircare</h3>
+            </div>
+
+            <div class="category-circle-card" data-category="Fragrance">
+                <div class="circle-image">
+                    <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=300" alt="Fragrance">
+                </div>
+                <h3>Fragrance</h3>
+            </div>
+
+        </div>
+    </section>
+
+    <main class="shop-container">
+        <div class="shop-controls">
+            <h2>Our Products</h2>
+            <div class="sort-container">
+                <label for="price-sort">Sort by:</label>
+                <select id="price-sort">
+                    <option value="default">Featured</option>
+                    <option value="low-high">Price: Low to High</option>
+                    <option value="high-low">Price: High to Low</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="products-grid" class="products-grid">
+            </div>
+    </main>
+
+    <div id="product-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <img id="modal-img" src="" alt="">
+                </div>
+                <div class="modal-info">
+                    <h2 id="modal-title">Product Name</h2>
+                    <p id="modal-brand" class="brand-tag">Brand</p>
+                    <p id="modal-price" class="price-tag">KES 0.00</p>
+                    <p id="modal-rating">⭐ 0.0</p>
+                    <p id="modal-desc">Product description goes here...</p>
+                    <button class="add-to-cart-btn">Add to Bag</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Lintons Beauty. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -30,10 +30,10 @@
         <div class="header-actions">
 
             <!-- Login -->
-           <a href="login.html" class="login-btn">
+         <button id="login-btn" class="login-btn">
     <i class="fa-regular fa-user"></i>
     Login
-</a>
+</button>
 
             <!-- Wishlist -->
             <div class="wishlist-icon" title="Wishlist">
@@ -291,6 +291,51 @@
     </div>
 
 </footer>
+<!-- Login Modal -->
+<div id="loginModal" class="login-modal">
+
+    <div class="login-box">
+
+        <span class="close-login">&times;</span>
+
+        <h1>Sign Up</h1>
+
+        <p>
+            Already a member?
+            <a href="#">Log In</a>
+        </p>
+
+        <button class="social-btn google">
+            <i class="fab fa-google"></i>
+            Sign up with Google
+        </button>
+
+        <button class="social-btn facebook">
+            <i class="fab fa-facebook-f"></i>
+            Sign up with Facebook
+        </button>
+
+        <div class="divider">
+            <span>or</span>
+        </div>
+
+        <button class="email-btn">
+            Sign up with email
+        </button>
+
+        <p class="small-text">
+            Your profile will be public by default. You can change this later in your account settings.
+        </p>
+
+        <p class="terms">
+            By signing up, you agree to our
+            <a href="#">Terms</a> and
+            <a href="#">Privacy Policy</a>.
+        </p>
+
+    </div>
+
+</div>
     <script src="script.js"></script>
 
 </body>

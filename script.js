@@ -318,3 +318,21 @@ function openProductModal(id) {
     modal.style.display = "flex";
 
 }
+// Login Modal
+const loginBtn = document.getElementById("login-btn");
+const loginModal = document.getElementById("loginModal");
+const closeLogin = document.querySelector(".close-login");
+
+loginBtn.addEventListener("click", () => {
+    loginModal.style.display = "flex";
+});
+
+closeLogin.addEventListener("click", () => {
+    loginModal.style.display = "none";
+});
+
+window.addEventListener("click", (e) => {
+    if (e.target === loginModal) {
+        loginModal.style.display = "none";
+    }
+});

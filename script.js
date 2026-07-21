@@ -1,32 +1,42 @@
-// --- STATE MANAGEMENT ---
+// =========================
+// STATE MANAGEMENT
+// =========================
 let allProducts = [];
-let filteredProducts = [];
-let currentCategory = 'all';
+let currentCategory = "all";
 
-// --- DOM ELEMENTS ---
-const productsGrid = document.getElementById('products-grid');
-const searchInput = document.getElementById('search-input');
-const navLinks = document.querySelectorAll('.nav-category');
-const priceSort = document.getElementById('price-sort');
-const circleCards = document.querySelectorAll('.category-circle-card');
+// =========================
+// DOM ELEMENTS
+// =========================
+const productsGrid = document.getElementById("products-grid");
+const searchInput = document.getElementById("search-input");
+const navLinks = document.querySelectorAll(".nav-category");
+const priceSort = document.getElementById("price-sort");
+const circleCards = document.querySelectorAll(".category-circle-card");
+
+// Shop Now Button
+const shopNowBtn = document.getElementById("shop-now-btn");
 
 // Modal Elements
-const modal = document.getElementById('product-modal');
-const closeModalBtn = document.querySelector('.close-modal');
-const modalImg = document.getElementById('modal-img');
-const modalTitle = document.getElementById('modal-title');
-const modalBrand = document.getElementById('modal-brand');
-const modalPrice = document.getElementById('modal-price');
-const modalRating = document.getElementById('modal-rating');
-const modalDesc = document.getElementById('modal-desc');
+const modal = document.getElementById("product-modal");
+const closeModalBtn = document.querySelector(".close-modal");
+const modalImg = document.getElementById("modal-img");
+const modalTitle = document.getElementById("modal-title");
+const modalBrand = document.getElementById("modal-brand");
+const modalPrice = document.getElementById("modal-price");
+const modalRating = document.getElementById("modal-rating");
+const modalDesc = document.getElementById("modal-desc");
 
-// --- INITIALIZE APPLICATION ---
-document.addEventListener('DOMContentLoaded', () => {
+// =========================
+// INITIALIZE
+// =========================
+document.addEventListener("DOMContentLoaded", () => {
     fetchProducts();
     setupEventListeners();
 });
 
-// --- API ACTIONS ---
+// =========================
+// FETCH PRODUCTS
+// =========================
 async function fetchProducts() {
     try {
 
@@ -38,137 +48,273 @@ async function fetchProducts() {
         const response = await fetch(`${API_URL}/products`);
 
         if (!response.ok) {
-            throw new Error(`HTTP Error: ${response.status}`);
+            throw new Error(`HTTP Error ${response.status}`);
         }
 
         allProducts = await response.json();
-        filteredProducts = [...allProducts];
 
-        displayProducts(filteredProducts);
+        displayProducts(allProducts);
 
     } catch (error) {
+
         console.error(error);
 
         productsGrid.innerHTML = `
-            <h2 style="text-align:center;color:red;grid-column:1/-1;">
+            <h2 style="color:red;text-align:center;grid-column:1/-1;">
                 Failed to load products.
             </h2>
         `;
     }
 }
 
-// --- RENDER PRODUCTS ---
+// =========================
+// DISPLAY PRODUCTS
+// =========================
 function displayProducts(products) {
-    productsGrid.innerHTML = '';
-    
-    if(products.length === 0) {
-        productsGrid.innerHTML = `<p style="grid-column: 1/-1; text-align:center;">No items found matching your criteria.</p>`;
+
+    productsGrid.innerHTML = "";
+
+    if (products.length === 0) {
+
+        productsGrid.innerHTML = `
+            <p style="grid-column:1/-1;text-align:center;">
+                No products found.
+            </p>
+        `;
+
         return;
     }
 
     products.forEach(product => {
-        const card = document.createElement('div');
-        card.classList.add('product-card');
+
+        const card = document.createElement("div");
+
+        card.classList.add("product-card");
+
         card.innerHTML = `
+
             <div>
+
                 <img src="${product.image}" alt="${product.name}">
+
                 <p class="brand">${product.brand}</p>
+
                 <h3>${product.name}</h3>
+
             </div>
+
             <div>
-                <p class="price">KES ${product.price.toLocaleString()}</p>
-                <button onclick="openProductModal(${product.id})">View Details</button>
+
+                <p class="price">
+                    KES ${product.price.toLocaleString()}
+                </p>
+
+                <button onclick="openProductModal(${product.id})">
+                    View Details
+                </button>
+
             </div>
+
         `;
+
         productsGrid.appendChild(card);
+
     });
+
 }
 
-// --- EVENT LISTENERS ---
+// =========================
+// EVENT LISTENERS
+// =========================
 function setupEventListeners() {
-    // Search Functionality
-    searchInput.addEventListener('input', filterAndSortProducts);
 
-    // Category Filter Functionality (Navbar)
+    // Search
+    searchInput.addEventListener("input", filterAndSortProducts);
+
+    // Navbar Categories
     navLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
+
+        link.addEventListener("click", e => {
+
             e.preventDefault();
-            navLinks.forEach(l => l.classList.remove('active'));
-            link.classList.add('active');
-            currentCategory = link.getAttribute('data-category');
+
+            navLinks.forEach(item => item.classList.remove("active"));
+
+            link.classList.add("active");
+
+            currentCategory = link.dataset.category;
+
             filterAndSortProducts();
+
         });
+
     });
 
-    // Category Filter Functionality (Visual Circles)
+    // Circle Categories
     circleCards.forEach(card => {
-        card.addEventListener('click', () => {
-            currentCategory = card.getAttribute('data-category');
-            
-            // Sync active visual state on top navbar link items
-            navLinks.forEach(l => {
-                if (l.getAttribute('data-category') === currentCategory) {
-                    l.classList.add('active');
+
+        card.addEventListener("click", () => {
+
+            currentCategory = card.dataset.category;
+
+            navLinks.forEach(link => {
+
+                if (link.dataset.category === currentCategory) {
+
+                    link.classList.add("active");
+
                 } else {
-                    l.classList.remove('active');
+
+                    link.classList.remove("active");
+
                 }
+
             });
-            
+
             filterAndSortProducts();
-            
-            // Smoothly view products display container
-            document.querySelector('.shop-container').scrollIntoView({ behavior: 'smooth' });
+
+            document.getElementById("products").scrollIntoView({
+
+                behavior: "smooth"
+
+            });
+
         });
+
     });
 
-    // Sorting Functionality
-    priceSort.addEventListener('change', filterAndSortProducts);
+    // Price Sort
+    priceSort.addEventListener("change", filterAndSortProducts);
 
-    // Close Modal Events
-    closeModalBtn.addEventListener('click', () => modal.style.display = 'none');
-    window.addEventListener('click', (e) => { if (e.target === modal) modal.style.display = 'none'; });
+    // Close Modal
+    closeModalBtn.addEventListener("click", () => {
+
+        modal.style.display = "none";
+
+    });
+
+    window.addEventListener("click", e => {
+
+        if (e.target === modal) {
+
+            modal.style.display = "none";
+
+        }
+
+    });
+
+    // Shop Now Button
+    if (shopNowBtn) {
+
+        shopNowBtn.addEventListener("click", () => {
+
+            currentCategory = "all";
+
+            navLinks.forEach(link => {
+
+                if (link.dataset.category === "all") {
+
+                    link.classList.add("active");
+
+                } else {
+
+                    link.classList.remove("active");
+
+                }
+
+            });
+
+            filterAndSortProducts();
+
+            document.getElementById("products").scrollIntoView({
+
+                behavior: "smooth"
+
+            });
+
+        });
+
+    }
+
 }
 
-// --- COMBINED FILTER & SORT LOGIC ---
+// =========================
+// FILTER & SORT
+// =========================
 function filterAndSortProducts() {
+
     let result = [...allProducts];
 
-    // 1. Filter by Category
-    if (currentCategory !== 'all') {
-        result = result.filter(p => p.category.toLowerCase() === currentCategory.toLowerCase());
-    }
+    // Category
 
-    // 2. Filter by Search Query
-    const query = searchInput.value.toLowerCase().trim();
-    if (query !== '') {
-        result = result.filter(p => 
-            p.name.toLowerCase().includes(query) || 
-            p.brand.toLowerCase().includes(query)
+    if (currentCategory !== "all") {
+
+        result = result.filter(product =>
+
+            product.category.toLowerCase() === currentCategory.toLowerCase()
+
         );
+
     }
 
-    // 3. Apply Sorting
-    const sortValue = priceSort.value;
-    if (sortValue === 'low-high') {
+    // Search
+
+    const query = searchInput.value.toLowerCase().trim();
+
+    if (query !== "") {
+
+        result = result.filter(product =>
+
+            product.name.toLowerCase().includes(query) ||
+
+            product.brand.toLowerCase().includes(query)
+
+        );
+
+    }
+
+    // Sort
+
+    if (priceSort.value === "low-high") {
+
         result.sort((a, b) => a.price - b.price);
-    } else if (sortValue === 'high-low') {
+
+    }
+
+    if (priceSort.value === "high-low") {
+
         result.sort((a, b) => b.price - a.price);
+
     }
 
     displayProducts(result);
+
 }
 
-// --- MODAL POPULATION ---
+// =========================
+// PRODUCT MODAL
+// =========================
 function openProductModal(id) {
-    const product = allProducts.find(p => p.id === id);
+
+    const product = allProducts.find(item => item.id === id);
+
     if (!product) return;
 
     modalImg.src = product.image;
-    modalTitle.textContent = product.name;
-    modalBrand.textContent = product.brand;
-    modalPrice.textContent = `KES ${product.price.toLocaleString()}`;
-    modalRating.textContent = `⭐ ${product.rating}`;
-    modalDesc.textContent = product.description || "No description available.";
 
-    modal.style.display = 'flex';
+    modalTitle.textContent = product.name;
+
+    modalBrand.textContent = product.brand;
+
+    modalPrice.textContent =
+        `KES ${product.price.toLocaleString()}`;
+
+    modalRating.textContent =
+        `⭐ ${product.rating}`;
+
+    modalDesc.textContent =
+        product.description || "No description available.";
+
+    modal.style.display = "flex";
+
 }

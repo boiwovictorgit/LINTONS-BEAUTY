@@ -336,3 +336,44 @@ window.addEventListener("click", (e) => {
         loginModal.style.display = "none";
     }
 });
+// =========================
+// LOGIN MODAL BUTTONS
+// =========================
+
+// Login page
+const loginLink = document.getElementById("login-link");
+
+if (loginLink) {
+    loginLink.addEventListener("click", (e) => {
+        e.preventDefault();
+        window.location.href = "login.html";
+    });
+}
+
+// Google Sign Up
+const googleBtn = document.getElementById("google-signup");
+
+if (googleBtn) {
+    googleBtn.addEventListener("click", () => {
+        window.open("https://accounts.google.com/", "_blank");
+    });
+}
+
+// Facebook Sign Up
+const facebookBtn = document.getElementById("facebook-signup");
+
+if (facebookBtn) {
+    facebookBtn.addEventListener("click", () => {
+        window.open("https://www.facebook.com/login/", "_blank");
+    });
+}
+
+// Email Sign Up
+const emailBtn = document.getElementById("email-signup");
+
+if (emailBtn) {
+    emailBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        window.location.href = "signup.html";
+    });
+}

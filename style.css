@@ -658,20 +658,27 @@ footer {
 
 /* Email Button */
 
-.email-btn {
+.email-btn{
+    display: block;
     width: 100%;
     padding: 14px;
-    background: white;
+    text-align: center;
+    text-decoration: none;
+    color: #222;
+    background: #fff;
     border: 1px solid #ccc;
-    border-radius: 5px;
-    cursor: pointer;
+    border-radius: 6px;
     font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
     transition: 0.3s;
+    box-sizing: border-box;
 }
 
-.email-btn:hover {
+.email-btn:hover{
     background: #f3f3f3;
 }
+
 
 .small-text,
 .terms {

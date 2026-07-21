@@ -29,19 +29,31 @@ document.addEventListener('DOMContentLoaded', () => {
 // --- API ACTIONS ---
 async function fetchProducts() {
     try {
-        const API_URL =
-    window.location.hostname === "localhost"
-        ? "http://localhost:3000"
-        : "https://YOUR-RENDER-URL.onrender.com";
 
-const response = await fetch(`${API_URL}/products`);
-        if (!response.ok) throw new Error('Network response failure.');
+        const API_URL =
+            window.location.hostname === "localhost"
+                ? "http://localhost:3000"
+                : "https://lintons-beauty.onrender.com";
+
+        const response = await fetch(`${API_URL}/products`);
+
+        if (!response.ok) {
+            throw new Error(`HTTP Error: ${response.status}`);
+        }
+
         allProducts = await response.json();
         filteredProducts = [...allProducts];
+
         displayProducts(filteredProducts);
+
     } catch (error) {
-        console.error("Error fetching data:", error);
-        productsGrid.innerHTML = `<p style="grid-column: 1/-1; text-align:center; color:red;">Failed to load products. Ensure json-server is running.</p>`;
+        console.error(error);
+
+        productsGrid.innerHTML = `
+            <h2 style="text-align:center;color:red;grid-column:1/-1;">
+                Failed to load products.
+            </h2>
+        `;
     }
 }
 

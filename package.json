@@ -2,11 +2,11 @@
   "name": "lintons-beauty",
   "version": "1.0.0",
   "description": "Lintons Beauty API",
-  
   "scripts": {
-    "start": "json-server --watch db.json --host 0.0.0.0 --port $PORT"
+    "start": "node server.js"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "json-server": "^0.17.4"
   }
 }

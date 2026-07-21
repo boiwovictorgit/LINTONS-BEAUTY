@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Makeup | Lintons Beauty</title>
+
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<header>
+
+<div class="top-header">
+
+<div class="logo">
+LINTONS <span>BEAUTY</span>
+</div>
+
+<div class="search-bar">
+<input type="text" placeholder="Search makeup...">
+<button>
+<i class="fa-solid fa-magnifying-glass"></i>
+</button>
+</div>
+
+<div class="header-actions">
+
+<a href="index.html" class="login-btn">
+<i class="fa-solid fa-house"></i>
+Home
+</a>
+
+</div>
+
+</div>
+
+<nav>
+
+<ul class="nav-links">
+
+<li><a href="index.html">Home</a></li>
+
+<li><a class="active">Makeup</a></li>
+
+<li><a href="index.html">Skincare</a></li>
+
+<li><a href="index.html">Haircare</a></li>
+
+<li><a href="index.html">Fragrance</a></li>
+
+</ul>
+
+</nav>
+
+</header>
+
+<main class="shop-container">
+
+<h1 style="text-align:center;margin:40px 0;">
+Our Makeup Collection
+</h1>
+
+<div id="products-grid" class="products-grid"></div>
+
+</main>
+
+<footer class="footer">
+
+<div class="footer-bottom">
+
+<p>
+© 2026 Lintons Beauty. All Rights Reserved.
+</p>
+
+</div>
+
+</footer>
+
+<script src="script.js"></script>
+
+<script>
+
+currentCategory="Makeup";
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+fetchProducts();
+
+});
+
+</script>
+
+</body>
+</html>

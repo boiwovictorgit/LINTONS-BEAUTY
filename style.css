@@ -602,37 +602,48 @@ footer {
 
 /* Social Buttons */
 
-.social-btn {
+.social-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
     width: 100%;
     padding: 14px;
-    margin: 10px 0;
+    margin: 12px 0;
+
     border: 1px solid #ddd;
-    border-radius: 5px;
+    border-radius: 6px;
+
+    text-decoration: none;
     font-size: 16px;
+    font-weight: 600;
+
     cursor: pointer;
+    box-sizing: border-box;
     transition: 0.3s;
 }
 
-.social-btn i {
-    margin-right: 10px;
+.social-btn i{
+    font-size: 18px;
 }
 
-.google {
-    background: white;
+.google{
+    background: #fff;
     color: #333;
 }
 
-.google:hover {
+.google:hover{
     background: #f5f5f5;
 }
 
-.facebook {
-    background: #1877f2;
-    color: white;
+.facebook{
+    background: #f9f9fce0;
+    color: #fff;
     border: none;
 }
 
-.facebook:hover {
+.facebook:hover{
     background: #1565d8;
 }
 

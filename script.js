@@ -33,11 +33,37 @@ document.addEventListener("DOMContentLoaded", () => {
     fetchProducts();
     setupEventListeners();
 });
+// =========================
+// SHOW LOADING SKELETONS
+// =========================
+function showLoading() {
+
+    productsGrid.innerHTML = "";
+
+    for (let i = 0; i < 8; i++) {
+
+        const skeleton = document.createElement("div");
+
+        skeleton.className = "product-card skeleton";
+
+        skeleton.innerHTML = `
+            <div class="skeleton-img"></div>
+            <div class="skeleton-line"></div>
+            <div class="skeleton-line short"></div>
+            <div class="skeleton-btn"></div>
+        `;
+
+        productsGrid.appendChild(skeleton);
+
+    }
+
+}
 
 // =========================
 // FETCH PRODUCTS
 // =========================
 async function fetchProducts() {
+      showLoading(); // Show loading cards
     try {
 
         const API_URL =

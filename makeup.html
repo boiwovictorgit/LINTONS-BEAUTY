@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Makeup | Lintons Beauty</title>
 
 <link rel="stylesheet" href="style.css">
+
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 </head>
 
 <body>
+
+<!-- ================= HEADER ================= -->
 
 <header>
 
@@ -23,17 +27,28 @@ LINTONS <span>BEAUTY</span>
 </div>
 
 <div class="search-bar">
-<input type="text" placeholder="Search makeup...">
+
+<input
+type="text"
+id="search-input"
+placeholder="Search makeup...">
+
 <button>
+
 <i class="fa-solid fa-magnifying-glass"></i>
+
 </button>
+
 </div>
 
 <div class="header-actions">
 
 <a href="index.html" class="login-btn">
+
 <i class="fa-solid fa-house"></i>
-return home page
+
+Home
+
 </a>
 
 </div>
@@ -60,41 +75,227 @@ return home page
 
 </header>
 
-<main class="shop-container">
+<!-- ================= BREADCRUMB ================= -->
 
-<h1 style="text-align:center;margin:40px 0;">
-Our Makeup Collection
-</h1>
+<section class="breadcrumb">
 
-<div id="products-grid" class="products-grid"></div>
+<p>
 
-</main>
+<a href="index.html">Home</a>
+
+>
+
+Makeup
+
+</p>
+
+</section>
+
+<!-- ================= BANNER ================= -->
+
+<section class="makeup-banner">
+
+<img
+src="images/makeup-banner.jpg"
+alt="Makeup Banner">
+
+</section>
+
+<!-- ================= SHOP ================= -->
+
+<section id="products">
+
+<div class="shop-layout">
+
+<!-- Sidebar -->
+
+<aside class="sidebar">
+
+<h2>Filter by</h2>
+
+<div class="filter-group">
+
+<h3>Price</h3>
+
+<input
+type="range"
+id="price-filter"
+min="500"
+max="15000"
+value="15000">
+
+<p>
+
+KES 500 -
+
+<span id="price-value">
+
+15000
+
+</span>
+
+</p>
+
+</div>
+
+<div class="filter-group">
+
+<h3>Brand</h3>
+
+<label>
+
+<input type="checkbox" value="Fenty">
+
+Fenty
+
+</label>
+
+<label>
+
+<input type="checkbox" value="Black Up">
+
+Black Up
+
+</label>
+
+<label>
+
+<input type="checkbox" value="MAC">
+
+MAC
+
+</label>
+
+</div>
+
+</aside>
+
+<!-- Products -->
+
+<div class="products-area">
+
+<div class="sort-bar">
+
+<select id="price-sort">
+
+<option value="default">
+
+Sort by
+
+</option>
+
+<option value="low-high">
+
+Price: Low to High
+
+</option>
+
+<option value="high-low">
+
+Price: High to Low
+
+</option>
+
+</select>
+
+</div>
+
+<div id="products-grid" class="products-grid">
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= PRODUCT MODAL ================= -->
+
+<div id="product-modal" class="modal">
+
+<div class="modal-content">
+
+<span class="close-modal">&times;</span>
+
+<div class="modal-body">
+
+<div class="modal-image">
+
+<img id="modal-img" src="">
+
+</div>
+
+<div class="modal-info">
+
+<h2 id="modal-title"></h2>
+
+<p id="modal-brand"></p>
+
+<p id="modal-price"></p>
+
+<p id="modal-rating"></p>
+
+<p id="modal-desc"></p>
+
+<button class="add-to-cart-btn">
+
+Add to Bag
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= FOOTER ================= -->
 
 <footer class="footer">
 
 <div class="footer-bottom">
 
 <p>
-© 2026 Lintons Beauty. All Rights Reserved.
+
+© 2026 Lintons Beauty.
+
+All Rights Reserved.
+
 </p>
 
 </div>
 
 </footer>
 
+<!-- ================= JAVASCRIPT ================= -->
+
 <script src="script.js"></script>
 
 <script>
 
-currentCategory="Makeup";
+currentCategory = "Makeup";
 
-document.addEventListener("DOMContentLoaded",()=>{
+document.addEventListener("DOMContentLoaded", () => {
 
 fetchProducts();
+
+const slider = document.getElementById("price-filter");
+
+const value = document.getElementById("price-value");
+
+slider.addEventListener("input", () => {
+
+value.textContent = slider.value;
+
+});
 
 });
 
 </script>
 
 </body>
+
 </html>

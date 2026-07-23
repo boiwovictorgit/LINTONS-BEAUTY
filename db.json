@@ -49,6 +49,16 @@
       "image": "https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=400",
       "rating": 4.9,
       "description": "The essence of a bold and free woman. An amber fragrance with a strong character and a deep, sensual freshness."
-    }
+    },
+    {
+  "id": 5,
+  "name": "Coco Mademoiselle Eau De Parfum",
+  "brand": "Chanel",
+  "category": "Fragrance",
+  "price": 18500,
+  "image": "https://natrue.org/uploads/2020/05/NATRUE_article.png",
+  "rating": 4.12,
+  "description": "The essence of a bold and free woman. An amber fragrance with a strong character and a deep, sensual freshness."
+}
   ]
 }

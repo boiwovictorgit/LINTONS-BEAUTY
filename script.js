@@ -3,6 +3,14 @@
 // =========================
 let allProducts = [];
 let currentCategory = "all";
+ let cartCount = 0;
+let currentProduct = null;
+
+const cartCounter = document.getElementById("cart-count");
+
+
+
+
 
 // =========================
 // DOM ELEMENTS
@@ -12,6 +20,19 @@ const searchInput = document.getElementById("search-input");
 const navLinks = document.querySelectorAll(".nav-category");
 const priceSort = document.getElementById("price-sort");
 const circleCards = document.querySelectorAll(".category-circle-card");
+let wishlistCount = 0;
+let wishlistCounter;
+
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    wishlistCounter = document.getElementById("wishlist-count");
+    
+
+    fetchProducts();
+    setupEventListeners();
+
+});
 
 // Shop Now Button
 const shopNowBtn = document.getElementById("shop-now-btn");
@@ -101,47 +122,80 @@ function displayProducts(products) {
     productsGrid.innerHTML = "";
 
     if (products.length === 0) {
-
         productsGrid.innerHTML = `
             <p style="grid-column:1/-1;text-align:center;">
                 No products found.
             </p>
         `;
-
         return;
     }
 
     products.forEach(product => {
 
         const card = document.createElement("div");
-
-        card.classList.add("product-card");
+        card.className = "product-card";
 
         card.innerHTML = `
+            <img src="${product.image}" alt="${product.name}">
 
-            <div>
+            <p class="brand">${product.brand}</p>
 
-                <img src="${product.image}" alt="${product.name}">
+            <h3>${product.name}</h3>
 
-                <p class="brand">${product.brand}</p>
-
-                <h3>${product.name}</h3>
-
+            <div class="wishlist">
+                <i class="fa-solid fa-heart like-btn"></i>
+                <span class="likes">0</span>
             </div>
 
-            <div>
+            <p class="price">
+                KES ${product.price.toLocaleString()}
+            </p>
 
-                <p class="price">
-                    KES ${product.price.toLocaleString()}
-                </p>
-
-                <button onclick="openProductModal(${product.id})">
-                    View Details
-                </button>
-
-            </div>
-
+            <button class="view-btn">
+                View Details
+            </button>
         `;
+
+        // View Details
+        card.querySelector(".view-btn").addEventListener("click", () => {
+            openProductModal(product.id);
+            const addToBagBtn = document.getElementById("add-to-bag-btn");
+
+addToBagBtn.addEventListener("click", () => {
+
+    if (!selectedProduct) return;
+
+    cartCount++;
+    cartCounter.textContent = cartCount;
+
+    alert(`${selectedProduct.name} added to bag!`);
+
+    modal.style.display = "none";
+});
+        });
+
+        // Wishlist
+        const heart = card.querySelector(".like-btn");
+        const likes = card.querySelector(".likes");
+
+        let liked = false;
+
+        heart.addEventListener("click", () => {
+
+            liked = !liked;
+
+            if (liked) {
+                heart.classList.add("liked");
+                likes.textContent = "1";
+                wishlistCount++;
+            } else {
+                heart.classList.remove("liked");
+                likes.textContent = "0";
+                wishlistCount--;
+            }
+
+            wishlistCounter.textContent = wishlistCount;
+        });
 
         productsGrid.appendChild(card);
 
@@ -317,33 +371,43 @@ function filterAndSortProducts() {
 
 }
 
-// =========================
+function addToCart(id) {
+
+    cartCount++;
+
+    cartCounter.textContent = cartCount;
+
+    alert("Product added to bag!");
+
+}
+
+    modal.style.display = "flex";
+    // =========================
 // PRODUCT MODAL
 // =========================
+
+let selectedProduct = null;
+
 function openProductModal(id) {
 
     const product = allProducts.find(item => item.id === id);
 
     if (!product) return;
 
+    selectedProduct = product;
+
     modalImg.src = product.image;
-
     modalTitle.textContent = product.name;
-
     modalBrand.textContent = product.brand;
-
-    modalPrice.textContent =
-        `KES ${product.price.toLocaleString()}`;
-
-    modalRating.textContent =
-        `⭐ ${product.rating}`;
-
+    modalPrice.textContent = `KES ${product.price.toLocaleString()}`;
+    modalRating.textContent = `⭐ ${product.rating}`;
     modalDesc.textContent =
         product.description || "No description available.";
 
     modal.style.display = "flex";
-
 }
+
+
 // Login Modal
 const loginBtn = document.getElementById("login-btn");
 const loginModal = document.getElementById("loginModal");
